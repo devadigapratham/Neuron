@@ -1,30 +1,45 @@
 # Neuron
 
-**Neuron** is a tool for visualizing neural network architectures using SDL2 and Jansson libraries. It provides graphical representations of neural networks, including layers and connections, based on a defined architecture.
+**Neuron** is a visualization tool for neural network architectures utilizing SDL2 and Jansson libraries. This tool generates graphical representations of various neural network structures, including feedforward networks, convolutional networks, and more.
 
 ## Project Status
 
 **Under Development**
 
-This project is currently under development. New features are being added, and improvements are underway. Contributions and feedback are welcome!
+The project is actively being developed, with ongoing enhancements and feature additions. Contributions and feedback are welcomed to help refine and improve the tool.
 
 ## Features
 
-- **Graphical Visualization:** Render neural network architectures with layers and connections.
-- **Customizable Architecture:** Define and visualize various neural network architectures.
-- **Support for Multiple Architectures:** Includes simple feedforward networks, convolutional networks, and more.
+- **Graphical Visualization:** Visualize neural network architectures with detailed layer and connection diagrams.
+- **Customizable Architectures:** Define and visualize different types of neural network structures.
+- **Support for Various Models:** Includes support for basic feedforward networks, CNNs, RNNs, and LSTMs.
+
+## Directory Structure
+
+```
+├── Makefile                   # Build instructions for the project
+├── neuralnet.c                # Source code for visualizing neural networks with hardcoded values
+├── neuralnet.h                # Header file for the visualization code
+├── README.md                  # Project documentation
+└── testing
+    ├── basic_arch.py          # Python script for defining a basic feedforward network
+    ├── cnn.py                 # Python script for defining a Convolutional Neural Network (CNN)
+    ├── lstm.py                # Python script for defining an LSTM (Long Short-Term Memory) network
+    ├── rnn.py                 # Python script for defining a Recurrent Neural Network (RNN)
+    └── visualize_network.c    # Source code for network visualization (alternative to neuralnet.c)
+```
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
+Ensure the following dependencies are installed:
 
 - **GCC Compiler**
 - **SDL2 Library**
 - **Jansson Library**
 
-On a Unix-based system (e.g., Linux), you can install these dependencies using your package manager. For example:
+On a Unix-based system, you can install these dependencies with:
 
 ```sh
 sudo pacman -S sdl2 jansson
@@ -39,33 +54,40 @@ sudo pacman -S sdl2 jansson
    cd neuron
    ```
 
-2. **Build the Project:**
+2. **Compile the Project:**
 
-   Use the provided `Makefile` to compile the project:
+   Build the project using the provided `Makefile`:
 
    ```sh
    make
    ```
 
-   This will generate an executable named `visualize_network`.
+   This will create an executable named `visualize_network`.
 
-3. **Run the Executable:**
+3. **Run the Application:**
+
+   Execute the compiled binary:
 
    ```sh
    ./visualize_network
    ```
 
-   The application will start, and you can view the neural network visualization.
+   The application will launch, allowing you to view the neural network visualization.
 
-### Directory Structure
+### Python Scripts
 
-- `visualize_network.c` - Source code for the visualization tool.
-- `Makefile` - Build instructions.
-- `README.md` - Project documentation.
+The `testing` directory contains scripts for generating different neural network architectures:
+
+- **`basic_arch.py`**: Defines a simple feedforward neural network.
+- **`cnn.py`**: Defines a Convolutional Neural Network (CNN) architecture.
+- **`lstm.py`**: Defines an LSTM (Long Short-Term Memory) network.
+- **`rnn.py`**: Defines a Recurrent Neural Network (RNN).
+
+These scripts can be used to generate network architecture JSON files for visualization with the `visualize_network` tool.
 
 ### Contributing
 
-Contributions are welcome! If you have suggestions, improvements, or bug fixes, please submit a pull request or open an issue.
+Contributions to the project are encouraged. If you have suggestions, improvements, or bug fixes, please submit a pull request or open an issue on the project's GitHub repository.
 
 ### License
 
