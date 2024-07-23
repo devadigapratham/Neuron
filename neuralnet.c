@@ -10,6 +10,8 @@
 #define WINDOW_HEIGHT 1410
 #define NETWORK_WIDTH 1600
 #define NETWORK_HEIGHT 1300
+#define ARRAY_LEN(x) (sizeof(x) / sizeof(x[0]))
+int arch[] = {2, 12, 25, 66, 4, 2, 1}; // You could customize here, plans to make it read from code and then visualize.
 
 void SDL_RenderFillCircle(SDL_Renderer *renderer, int x, int y, int radius, SDL_Color c) {
 
@@ -37,12 +39,40 @@ void render_network(SDL_Renderer *renderer, int x, int y) {
 
     SDL_RenderDrawRect(renderer, &box);
     SDL_Color c;
-    c.r = 0xFF;
-    c.g = 0x00;
+    c.r = 0x00;
+    c.g = 0xFF;
     c.b = 0x00;
     c.a = 0xFF;
 
-    SDL_RenderFillCircle(renderer, x + 200, y + 200, 150, c);
+    float layers = ARRAY_LEN(arch);
+    float layer_width = NETWORK_WIDTH / layers;
+    float x_offset = layer_width / 2;
+
+    for (int i = 0; i < layers; i++) {
+        float xPos = x + i * layer_width + x_offset;
+
+        for (int j = 0; j < arch[i]; j++) {
+            float neuron_height = NETWORK_HEIGHT / arch[i];
+            float y_offset = neuron_height / 2;
+            float yPos = y + j * neuron_height + y_offset;
+
+            if (i < layers - 1) {
+                for (int k = 0; k < arch[i+1]; k++) {
+                    float xPos2 = x + (i + 1) * layer_width + x_offset;
+                    float neuron_height2 = NETWORK_HEIGHT / arch[i + 1];
+                    float y_offset2 = neuron_height2 / 2;
+                    float yPos2 = y + k * neuron_height2 + y_offset2;
+
+                    SDL_SetRenderDrawColor(renderer, 0x55, 0x55, 0x55, 255);
+                    SDL_RenderDrawLine(renderer, xPos, yPos, xPos2, yPos2);
+                }
+            }
+
+            int size = 100 / arch[i] + 2;
+
+            SDL_RenderFillCircle(renderer, xPos, yPos, size, c);
+        }
+    }
 
     return;
 }
