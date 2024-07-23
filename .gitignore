@@ -1,0 +1,11 @@
+testing/venv/
+
+__pycache__/
+*.py[cod]
+
+*.swp
+*.swo
+.idea/
+
+*.log
+*.sqlite3
